@@ -1,0 +1,35 @@
+name: execubot-kernel-dev
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: execubot
+      POSTGRES_USER: execubot
+      POSTGRES_PASSWORD: execubot_dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - execubot_postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  execubot-api:
+    image: python:3.12-slim
+    command: ["sh", "-c", "echo 'execubot-api placeholder: FastAPI service starts in Milestone 2' && sleep infinity"]
+    depends_on:
+      - postgres
+      - redis
+
+  execubot-worker:
+    image: python:3.12-slim
+    command: ["sh", "-c", "echo 'execubot-worker placeholder: Redis Streams worker starts in Milestone 2' && sleep infinity"]
+    depends_on:
+      - postgres
+      - redis
+
+volumes:
+  execubot_postgres_data:

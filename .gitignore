@@ -1,0 +1,28 @@
+# Local environment
+.env
+.env.*
+!.env.example
+!docker/env.example
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Runtime output
+logs/
+tmp/
+artifacts/
+
+# Language-specific outputs added later
+node_modules/
+dist/
+build/
+coverage/
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# Docker/local data
+.docker-data/

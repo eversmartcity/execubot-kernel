@@ -1,0 +1,57 @@
+version: 0.1
+project: execubot-kernel
+agents:
+  - id: execubot
+    name: ExecuBot
+    role: orchestrator
+    spec: agents/execubot.md
+    owns:
+      - command-routing
+      - task-state
+      - approval-gates
+      - audit-events
+  - id: engineering
+    name: Engineering Agent
+    role: specialist
+    spec: agents/engineering-agent.md
+    owns:
+      - implementation
+      - code-review
+      - ci
+      - technical-design
+  - id: product
+    name: Product Agent
+    role: specialist
+    spec: agents/product-agent.md
+    owns:
+      - requirements
+      - roadmap
+      - backlog
+      - release-scope
+  - id: operations
+    name: Operations Agent
+    role: specialist
+    spec: agents/operations-agent.md
+    owns:
+      - runbooks
+      - deployment-readiness
+      - observability
+      - incident-response
+  - id: finance
+    name: Finance Agent
+    role: specialist
+    spec: agents/finance-agent.md
+    owns:
+      - costs
+      - budgets
+      - vendor-spend
+      - financial-reporting
+  - id: data
+    name: Data Agent
+    role: specialist
+    spec: agents/data-agent.md
+    owns:
+      - analytics
+      - memory-indexing
+      - schemas
+      - reporting

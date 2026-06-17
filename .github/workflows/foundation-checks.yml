@@ -1,0 +1,36 @@
+name: Foundation Checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  structure:
+    name: Repository structure
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify foundation files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f README.md
+          test -f docs/architecture.md
+          test -f docs/roadmap.md
+          test -f docs/docker-environment.md
+          test -f docs/telegram-interface.md
+          test -f docs/memory-architecture.md
+          test -f docs/linear-organization.md
+          test -f docs/github-workflow.md
+          test -f docs/task-breakdown.md
+          test -f docs/decisions.md
+          test -f backlog/milestones.md
+          test -f backlog/backlog.md
+          test -f backlog/next-30-days.md
+          test -f backlog/milestone-2-local-kernel-skeleton.md
+          test -f agents/registry.yaml
+          test -f docker/docker-compose.dev.yml
