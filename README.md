@@ -28,6 +28,16 @@ ExecuBot Kernel is the foundation for a Docker-based AI agent orchestration plat
 ```text
 .
 ├── README.md
+├── pyproject.toml
+├── alembic.ini
+├── execubot/
+│   ├── api/
+│   │   └── main.py
+│   ├── core/
+│   │   ├── config.py
+│   │   ├── database.py
+│   │   └── models.py
+│   └── migrations/
 ├── docs/
 │   ├── architecture.md
 │   ├── docker-environment.md
@@ -54,10 +64,12 @@ ExecuBot Kernel is the foundation for a Docker-based AI agent orchestration plat
 │   ├── pull_request_template.md
 │   └── workflows/
 │       └── foundation-checks.yml
-└── backlog/
-    ├── milestones.md
-    ├── backlog.md
-    └── next-30-days.md
+├── backlog/
+│   ├── milestones.md
+│   ├── backlog.md
+│   ├── milestone-2-local-kernel-skeleton.md
+│   └── next-30-days.md
+└── tests/
 ```
 
 ## Architecture Summary
@@ -81,6 +93,54 @@ See [docs/architecture.md](docs/architecture.md) for the full v0.1 architecture.
 ## Current Status
 
 This repository is in **Phase 1: Foundation**. Runtime implementation is intentionally deferred until the architecture, backlog, and workflow are stable enough for specialist agents to execute independently.
+
+## Local Development
+
+Prerequisites:
+
+- Python 3.12+
+- PostgreSQL 16+
+
+Create a local environment:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+```
+
+Copy the documented environment variables and adjust local values:
+
+```powershell
+Copy-Item docker\env.example .env
+```
+
+Run database migrations:
+
+```powershell
+alembic upgrade head
+```
+
+Start the API:
+
+```powershell
+uvicorn execubot.api.main:app --reload
+```
+
+Check health:
+
+```powershell
+Invoke-RestMethod http://localhost:8000/health
+```
+
+Run tests:
+
+```powershell
+python -m unittest discover
+```
+
+Current skeleton scope includes FastAPI, `.env` config loading, PostgreSQL connection setup, Alembic migrations, and initial models for `audit_events`, `memory_items`, `tasks`, and `approvals`. Redis, Telegram, Discord, Celery, Temporal, and vector search are intentionally not included yet.
 
 ## Next Step
 

@@ -34,3 +34,11 @@ jobs:
           test -f backlog/milestone-2-local-kernel-skeleton.md
           test -f agents/registry.yaml
           test -f docker/docker-compose.dev.yml
+          test -f pyproject.toml
+          test -f alembic.ini
+          test -f execubot/api/main.py
+          test -f execubot/core/config.py
+          test -f execubot/core/database.py
+          test -f execubot/core/models.py
+          test -f execubot/migrations/env.py
+          test -f execubot/migrations/versions/20260617_0001_initial_tables.py

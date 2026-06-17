@@ -16,6 +16,7 @@ tmp/
 artifacts/
 
 # Language-specific outputs added later
+.venv/
 node_modules/
 dist/
 build/
