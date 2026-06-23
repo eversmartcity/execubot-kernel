@@ -21,6 +21,7 @@ node_modules/
 dist/
 build/
 coverage/
+*.egg-info/
 .pytest_cache/
 __pycache__/
 *.pyc
